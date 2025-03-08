@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Table Details{% endblock %}
+
+{% block content %}
+<h2>Table {{ table.number }}</h2>
+<p>Capacity: {{ table.capacity }}</p>
+<p>Status: {% if table.is_available %}✅ Available{% else %}❌ Booked{% endif %}</p>
+<a href="{% url 'table-list' %}" class="btn btn-primary">Back to list</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Reservation Details{% endblock %}
+
+{% block content %}
+<h2>Reservation {{ reservation.id }}</h2>
+<p>Customer: {{ reservation.customer.name }}</p>
+<p>Table: {{ reservation.table.number }}</p>
+<p>Date: {{ reservation.date }}</p>
+<p>Status: {{ reservation.status }}</p>
+<a href="{% url 'reservation-list' %}" class="btn btn-primary">Back to list</a>
+{% endblock %}

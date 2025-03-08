@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Редактирование поста{% endblock %}
+
+{% block content %}
+<h2>Редактировать пост</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Заголовок</label>
+        <input type="text" name="title" class="form-control" value="{{ post.title }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Изображение</label>
+        <input type="file" name="picture" class="form-control">
+        {% if post.picture %}
+            <img src="{{ post.picture.url }}" class="img-fluid mt-2" alt="Изображение">
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Описание</label>
+        <textarea name="description" class="form-control" required>{{ post.description }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Автор</label>
+        <input type="text" name="author" class="form-control" value="{{ post.author }}" required>
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>
+{% endblock %}

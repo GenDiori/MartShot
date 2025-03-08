@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Make a Reservation{% endblock %}
+
+{% block content %}
+<h2>Make a Reservation</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="customer" class="form-label">Customer</label>
+        {{ form.customer }}
+    </div>
+    <div class="mb-3">
+        <label for="table" class="form-label">Table</label>
+        {{ form.table }}
+    </div>
+    <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        {{ form.date }}
+    </div>
+    <button type="submit" class="btn btn-primary">Reserve</button>
+</form>
+{% endblock %}

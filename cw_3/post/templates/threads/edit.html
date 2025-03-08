@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Редактирование темы{% endblock %}
+
+{% block content %}
+<h2>Редактировать тему</h2>
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Название</label>
+        <input type="text" name="name" class="form-control" value="{{ thread.name }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Описание</label>
+        <textarea name="description" class="form-control" required>{{ thread.description }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>
+{% endblock %}

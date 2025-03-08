@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Список тем{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Список тем</h2>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addThreadModal">Добавить тему</button>
+</div>
+
+{% for thread in threads %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ thread.name }}</h5>
+            <p class="card-text">{{ thread.description }}</p>
+            <a href="{% url 'thread_detail' thread.id %}" class="btn btn-info">Подробнее</a>
+            <a href="{% url 'thread_edit' thread.id %}" class="btn btn-warning">Редактировать</a>
+            <a href="{% url 'thread_delete' thread.id %}" class="btn btn-danger">Удалить</a>
+        </div>
+    </div>
+{% empty %}
+    <p>Нет созданных тем.</p>
+{% endfor %}
+
+<!-- Модальное окно для добавления темы -->
+<div class="modal fade" id="addThreadModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Создать тему</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'threads_list' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Название</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Описание</label>
+                        <textarea name="description" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
