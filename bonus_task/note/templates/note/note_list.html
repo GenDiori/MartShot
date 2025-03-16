@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Список заметок{% endblock %}
+
+{% block content %}
+    <h2>Список заметок</h2>
+    {% for note in notes %}
+        <div>
+            <h3><a href="{% url 'note_detail' note.pk %}">{{ note.title }}</a></h3>
+            <p>{{ note.content|truncatechars:100 }}</p>
+            <a href="{% url 'note_update' note.pk %}">Редактировать</a> |
+            <a href="{% url 'note_delete' note.pk %}">Удалить</a>
+        </div>
+    {% empty %}
+        <p>Заметок пока нет.</p>
+    {% endfor %}
+    <a href="{% url 'note_create' %}">Создать новую заметку</a>
+{% endblock %}

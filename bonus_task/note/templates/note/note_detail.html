@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ note.title }}{% endblock %}
+
+{% block content %}
+    <h2>{{ note.title }}</h2>
+    <p>{{ note.content }}</p>
+    <p><i>Создано: {{ note.created_at }}</i></p>
+    
+    <a href="{% url 'note_update' note.pk %}">Редактировать</a> |
+    <a href="{% url 'note_delete' note.pk %}">Удалить</a>
+    <br><br>
+    <a href="{% url 'note_list' %}">Назад</a>
+{% endblock %}

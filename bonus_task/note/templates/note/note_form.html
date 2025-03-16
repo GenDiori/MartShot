@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Создать/Редактировать заметку{% endblock %}
+
+{% block content %}
+    <h2>{% if form.instance.pk %}Редактировать{% else %}Создать{% endif %} заметку</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <a href="{% url 'note_list' %}">Отмена</a>
+{% endblock %}
